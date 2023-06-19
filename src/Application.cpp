@@ -4,6 +4,8 @@
 bool twt::Application::OnInit() 
 {
     PopupFrame *frame = new PopupFrame();
+    frame->CenterOnScreen();
     frame->Show(true);
+
     return true;
 }

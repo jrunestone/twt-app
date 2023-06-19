@@ -1,6 +1,8 @@
 #pragma once
 
+#include <memory>
 #include <wx/wx.h>
+#include "TaskBarIcon.h"
 
 namespace twt
 {
@@ -8,5 +10,8 @@ namespace twt
     {
         public:
             PopupFrame();
+
+        private:
+            std::shared_ptr<twt::TaskBarIcon> taskBarIcon;
     };
 }
