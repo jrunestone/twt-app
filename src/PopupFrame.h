@@ -12,6 +12,10 @@ namespace twt
             PopupFrame();
 
         private:
+            void Restore();
+            void Exit();
+
+        private:
             std::shared_ptr<twt::TaskBarIcon> taskBarIcon;
     };
 }

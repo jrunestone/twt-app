@@ -2,6 +2,7 @@
     "name": "time-will-tell",
     "version": "1",
     "dependencies": [
-      "wxwidgets"
+      "wxwidgets",
+      "eventpp"
     ]
 }

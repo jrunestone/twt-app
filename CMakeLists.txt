@@ -14,5 +14,8 @@ set(CMAKE_TOOLCHAIN_FILE /home/jr/src/time-will-tell-app/vcpkg/scripts/buildsyst
 find_package(wxWidgets CONFIG REQUIRED)
 target_link_libraries(time-will-tell PRIVATE wx::core wx::base)
 
+find_package(eventpp CONFIG REQUIRED)
+target_link_libraries(time-will-tell PRIVATE eventpp::eventpp)
+
 target_include_directories(time-will-tell PUBLIC src)
 target_compile_features(time-will-tell PUBLIC cxx_std_17)

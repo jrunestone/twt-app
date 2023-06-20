@@ -18,12 +18,12 @@ twt::TaskBarIcon::TaskBarIcon()
 
 void twt::TaskBarIcon::OnMenuRestore(wxCommandEvent&)
 {
-    wxMessageBox("Restore");
+    onRestore();
 }
 
 void twt::TaskBarIcon::OnMenuExit(wxCommandEvent&)
 {
-    wxMessageBox("Exit");
+    onExit();
 }
 
 wxMenu *twt::TaskBarIcon::CreatePopupMenu()

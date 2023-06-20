@@ -1,5 +1,6 @@
 #pragma once
 
+#include <eventpp/callbacklist.h>
 #include <wx/wx.h>
 #include <wx/taskbar.h>
 
@@ -8,12 +9,17 @@ namespace twt
     class TaskBarIcon : public wxTaskBarIcon
     {
         public:
-            TaskBarIcon();
+            eventpp::CallbackList<void()> onRestore;
+            eventpp::CallbackList<void()> onExit;
 
-            void OnMenuRestore(wxCommandEvent&);
-            void OnMenuExit(wxCommandEvent&);
+        public:
+            TaskBarIcon();
             virtual wxMenu *CreatePopupMenu() override;
 
-            wxDECLARE_EVENT_TABLE();
+        private:
+            void OnMenuRestore(wxCommandEvent&);
+            void OnMenuExit(wxCommandEvent&);
+
+        wxDECLARE_EVENT_TABLE();
     };
 }
