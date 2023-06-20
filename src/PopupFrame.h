@@ -15,7 +15,11 @@ namespace twt
             void Restore();
             void Exit();
 
+            void OnFocusLost(wxFocusEvent &event);
+            void OnKeyDown(wxKeyEvent &event);
+
         private:
             std::shared_ptr<twt::TaskBarIcon> taskBarIcon;
+            wxTextCtrl *textInput;
     };
 }

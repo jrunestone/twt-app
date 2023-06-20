@@ -5,7 +5,7 @@ twt::PopupFrame::PopupFrame() : wxFrame(nullptr,
                                         wxID_ANY, 
                                         "Time will tell",
                                         wxDefaultPosition,
-                                        wxSize(400, 150),
+                                        wxSize(400, 50),
                                         wxFRAME_TOOL_WINDOW | wxNO_BORDER | wxFRAME_NO_TASKBAR)
 {
     taskBarIcon = std::make_shared<twt::TaskBarIcon>();
@@ -13,6 +13,11 @@ twt::PopupFrame::PopupFrame() : wxFrame(nullptr,
     taskBarIcon->SetIcon(wxArtProvider::GetBitmapBundle(wxART_WX_LOGO, wxART_OTHER, wxSize(32, 32)), "Time will tell");
     taskBarIcon->onRestore.append(std::bind(&twt::PopupFrame::Restore, this));
     taskBarIcon->onExit.append(std::bind(&twt::PopupFrame::Exit, this));
+
+    // textInput = new wxTextCtrl(this, -1);
+
+    Bind(wxEVT_KILL_FOCUS, &twt::PopupFrame::OnFocusLost, this);
+    Bind(wxEVT_KEY_DOWN, &twt::PopupFrame::OnKeyDown, this);
 }
 
 void twt::PopupFrame::Restore()
@@ -23,5 +28,16 @@ void twt::PopupFrame::Restore()
 
 void twt::PopupFrame::Exit()
 {
-    Close();
+    Close(true);
+}
+
+void twt::PopupFrame::OnFocusLost(wxFocusEvent &event)
+{
+    event.Skip();
+    Exit();
+}
+
+void twt::PopupFrame::OnKeyDown(wxKeyEvent &event)
+{
+    Exit();
 }

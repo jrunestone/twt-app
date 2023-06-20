@@ -17,8 +17,8 @@ namespace twt
             virtual wxMenu *CreatePopupMenu() override;
 
         private:
-            void OnMenuRestore(wxCommandEvent&);
-            void OnMenuExit(wxCommandEvent&);
+            void OnMenuRestore(wxCommandEvent &event);
+            void OnMenuExit(wxCommandEvent &event);
 
         wxDECLARE_EVENT_TABLE();
     };

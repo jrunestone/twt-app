@@ -16,12 +16,12 @@ twt::TaskBarIcon::TaskBarIcon()
 
 }
 
-void twt::TaskBarIcon::OnMenuRestore(wxCommandEvent&)
+void twt::TaskBarIcon::OnMenuRestore(wxCommandEvent &event)
 {
     onRestore();
 }
 
-void twt::TaskBarIcon::OnMenuExit(wxCommandEvent&)
+void twt::TaskBarIcon::OnMenuExit(wxCommandEvent &event)
 {
     onExit();
 }
