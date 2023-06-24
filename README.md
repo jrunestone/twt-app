@@ -1,14 +1,6 @@
-## Dependencies
-libsystemd-dev
-libxrender-dev
-bison
-libdbus-1-dev libxi-dev libxtst-dev
-lixrandr-dev
+## Install dependencies
+Install latest cmake first (3.25+).
+`./bootstrap.sh`
 
 ## Build
-```
-./vcpkg/vcpkg install
-mkdir -p ./build && cd build
-cmake ..
-cmake --build .
-```
+`cmake --build .`
