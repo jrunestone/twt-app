@@ -14,10 +14,10 @@ twt::PopupFrame::PopupFrame() : wxFrame(nullptr,
     taskBarIcon->onRestore.append(std::bind(&twt::PopupFrame::Restore, this));
     taskBarIcon->onExit.append(std::bind(&twt::PopupFrame::Exit, this));
 
-    // textInput = new wxTextCtrl(this, -1);
+    textInput = new wxTextCtrl(this, -1);
 
-    Bind(wxEVT_KILL_FOCUS, &twt::PopupFrame::OnFocusLost, this);
-    Bind(wxEVT_KEY_DOWN, &twt::PopupFrame::OnKeyDown, this);
+    textInput->Bind(wxEVT_KILL_FOCUS, &twt::PopupFrame::OnFocusLost, this);
+    textInput->Bind(wxEVT_KEY_DOWN, &twt::PopupFrame::OnKeyDown, this);
 }
 
 void twt::PopupFrame::Restore()
@@ -39,5 +39,10 @@ void twt::PopupFrame::OnFocusLost(wxFocusEvent &event)
 
 void twt::PopupFrame::OnKeyDown(wxKeyEvent &event)
 {
-    Exit();
+    if (event.GetKeyCode() == WXK_ESCAPE) 
+    {
+        Exit();
+    }
+    
+    event.Skip();
 }
