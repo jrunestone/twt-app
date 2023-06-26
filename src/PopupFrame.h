@@ -3,6 +3,7 @@
 #include <memory>
 #include <wx/wx.h>
 #include "TaskBarIcon.h"
+#include "TimeService.h"
 
 namespace twt
 {
@@ -21,5 +22,6 @@ namespace twt
         private:
             std::shared_ptr<twt::TaskBarIcon> taskBarIcon;
             wxTextCtrl *textInput;
+            twt::TimeService timeService;
     };
 }

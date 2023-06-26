@@ -3,6 +3,8 @@
     "version": "1",
     "dependencies": [
       "wxwidgets",
-      "eventpp"
+      "eventpp",
+      "libuuid",
+      "fmt"
     ]
 }

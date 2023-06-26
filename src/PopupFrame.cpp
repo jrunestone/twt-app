@@ -1,4 +1,5 @@
 #include <wx/artprov.h>
+#include <fmt/core.h>
 #include "PopupFrame.h"
 
 twt::PopupFrame::PopupFrame() : wxFrame(nullptr, 
@@ -34,15 +35,21 @@ void twt::PopupFrame::Exit()
 void twt::PopupFrame::OnFocusLost(wxFocusEvent &event)
 {
     event.Skip();
-    Exit();
+    Hide();
 }
 
 void twt::PopupFrame::OnKeyDown(wxKeyEvent &event)
 {
     if (event.GetKeyCode() == WXK_ESCAPE) 
     {
-        Exit();
+        Hide();
     }
-    
+    else if (event.GetKeyCode() == WXK_RETURN)
+    {
+        timeService.startNewEntry(textInput->GetValue().ToStdString());
+        const auto entry = timeService.getEntries()[0];
+        wxMessageBox(fmt::format("{} {} {}", entry.id, entry.timestamp, entry.label));
+    }
+
     event.Skip();
 }
