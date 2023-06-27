@@ -14,7 +14,7 @@ namespace twt
         public:
             TimeService();
 
-            const std::vector<twt::TimeEntry> &getEntries() const;
-            void startNewEntry(const std::string &label);
+            const std::vector<twt::TimeEntry> &GetEntries() const;
+            void StartNewEntry(const std::string &label);
     };
 }

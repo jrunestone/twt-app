@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include <chrono>
 
 namespace twt
 {
@@ -9,14 +10,13 @@ namespace twt
         public:
             std::string id;
             std::string label;
-            int64_t timestamp;
+            std::chrono::time_point<std::chrono::system_clock> timestamp;
+            int duration;
 
         public:
-            TimeEntry(const std::string &id,
-                      const std::string &label,
-                      int64_t timestamp) : id(id), label(label), timestamp(timestamp)
-                      {
+            TimeEntry(const std::string &id, const std::string &label, const std::chrono::time_point<std::chrono::system_clock> &timestamp);
 
-                      }
+            const std::string FormatTimestamp() const;
+            const std::string FormatDuration() const;
     };
 }

@@ -15,10 +15,23 @@ twt::PopupFrame::PopupFrame() : wxFrame(nullptr,
     taskBarIcon->onRestore.append(std::bind(&twt::PopupFrame::Restore, this));
     taskBarIcon->onExit.append(std::bind(&twt::PopupFrame::Exit, this));
 
-    textInput = new wxTextCtrl(this, -1);
+    // main sizer
+    wxBoxSizer *topSizer = new wxBoxSizer(wxVERTICAL);
+
+    // main input
+    textInput = new wxTextCtrl(this, -1, wxEmptyString, wxDefaultPosition, wxSize(400, 50));
 
     textInput->Bind(wxEVT_KILL_FOCUS, &twt::PopupFrame::OnFocusLost, this);
     textInput->Bind(wxEVT_KEY_DOWN, &twt::PopupFrame::OnKeyDown, this);
+
+    topSizer->Add(textInput, wxSizerFlags().Expand());
+
+    // time entries
+    timeEntrySizer = new wxFlexGridSizer(4, 3, 10);
+    topSizer->Add(timeEntrySizer);
+
+    // fin
+    SetSizerAndFit(topSizer);
 }
 
 void twt::PopupFrame::Restore()
@@ -46,10 +59,26 @@ void twt::PopupFrame::OnKeyDown(wxKeyEvent &event)
     }
     else if (event.GetKeyCode() == WXK_RETURN)
     {
-        timeService.startNewEntry(textInput->GetValue().ToStdString());
-        const auto entry = timeService.getEntries()[0];
-        wxMessageBox(fmt::format("{} {} {}", entry.id, entry.timestamp, entry.label));
+        timeService.StartNewEntry(textInput->GetValue().ToStdString());
+        UpdateEntryList();
+        textInput->Clear();
     }
 
     event.Skip();
+}
+
+void twt::PopupFrame::UpdateEntryList()
+{
+    const auto entries = timeService.GetEntries();
+    timeEntrySizer->Clear(true);
+
+    for (auto entry : entries)
+    {
+        timeEntrySizer->Add(new wxStaticText(this, -1, wxString(entry.FormatTimestamp())), wxSizerFlags().Left().Expand());
+        timeEntrySizer->Add(new wxStaticText(this, -1, wxString(entry.label)), wxSizerFlags().Expand());
+        timeEntrySizer->Add(new wxStaticText(this, -1, wxString(entry.FormatDuration())), wxSizerFlags().Expand());
+        timeEntrySizer->Add(new wxStaticText(this, -1, wxString("[o]")), wxSizerFlags().Right().Expand());
+    }
+
+    Fit();
 }

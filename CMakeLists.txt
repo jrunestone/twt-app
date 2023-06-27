@@ -2,6 +2,7 @@ cmake_minimum_required (VERSION 3.5)
 project(time-will-tell VERSION 1.0 LANGUAGES CXX)
 
 add_executable(time-will-tell 
+    src/TimeEntry.cpp
     src/TimeService.cpp
     src/TaskBarIcon.cpp
     src/PopupFrame.cpp

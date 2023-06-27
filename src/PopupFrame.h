@@ -19,9 +19,13 @@ namespace twt
             void OnFocusLost(wxFocusEvent &event);
             void OnKeyDown(wxKeyEvent &event);
 
+            void UpdateEntryList();
+
         private:
-            std::shared_ptr<twt::TaskBarIcon> taskBarIcon;
-            wxTextCtrl *textInput;
             twt::TimeService timeService;
+            std::shared_ptr<twt::TaskBarIcon> taskBarIcon;
+
+            wxFlexGridSizer *timeEntrySizer;
+            wxTextCtrl *textInput;
     };
 }
