@@ -24,5 +24,8 @@ target_link_libraries(time-will-tell PRIVATE unofficial::UUID::uuid)
 find_package(fmt CONFIG REQUIRED)
 target_link_libraries(time-will-tell PRIVATE fmt::fmt)
 
+find_package(uiohook CONFIG REQUIRED PATHS ./lib/libuiohook/dist/lib/cmake)
+target_link_libraries(time-will-tell PRIVATE uiohook)
+
 target_include_directories(time-will-tell PUBLIC src)
 target_compile_features(time-will-tell PUBLIC cxx_std_20)

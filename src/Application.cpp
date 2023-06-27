@@ -5,8 +5,6 @@ bool twt::Application::OnInit()
 {
     PopupFrame *frame = new PopupFrame();
     frame->CenterOnScreen();
-    frame->Show(true);
-    SetTopWindow(frame);
 
     return true;
 }
