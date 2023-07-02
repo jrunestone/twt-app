@@ -3,9 +3,8 @@ sudo apt install -y g++ gcc build-essential libsystemd-dev libxrender-dev bison 
 
 git clone https://github.com/Microsoft/vcpkg.git &&
 ./vcpkg/bootstrap-vcpkg.sh &&
-./vcpkg/vcpkg install &&
 
-mkdir -p lib
+mkdir -p lib &&
 git clone https://github.com/kwhat/libuiohook lib/libuiohook &&
 mkdir -p lib/libuiohook/build &&
 cmake -B ./lib/libuiohook/build -S ./lib/libuiohook -D BUILD_SHARED_LIBS=ON -DCMAKE_INSTALL_PREFIX=./lib/libuiohook/dist &&

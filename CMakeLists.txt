@@ -1,4 +1,7 @@
 cmake_minimum_required (VERSION 3.5)
+
+set(CMAKE_TOOLCHAIN_FILE ./vcpkg/scripts/buildsystems/vcpkg.cmake)
+
 project(time-will-tell VERSION 1.0 LANGUAGES CXX)
 
 add_executable(time-will-tell 
@@ -9,9 +12,6 @@ add_executable(time-will-tell
     src/Application.cpp
     src/main.cpp
 )
-
-# doesnt seem to be needed
-set(CMAKE_TOOLCHAIN_FILE /home/jr/src/time-will-tell-app/vcpkg/scripts/buildsystems/vcpkg.cmake)
 
 find_package(wxWidgets CONFIG REQUIRED)
 target_link_libraries(time-will-tell PRIVATE wx::core wx::base)
