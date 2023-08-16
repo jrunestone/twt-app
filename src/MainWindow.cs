@@ -12,6 +12,9 @@ public class MainWindow : Window
     
     [UI] 
     private Menu trayIconMenu;
+
+    [UI]
+    private Entry textInput;
     
     public MainWindow() : this(new Builder("MainWindow.glade"))
     {
@@ -31,6 +34,10 @@ public class MainWindow : Window
         
         showItem.Activated += OnMenuShowActivated;
         exitItem.Activated += OnMenuExitActivated;
+
+        var cssProvider = new CssProvider();
+        cssProvider.LoadFromPath("/home/runsten/src/private/twt-app/src/assets/style.css");
+        StyleContext.AddProviderForScreen(Gdk.Screen.Default, cssProvider, StyleProviderPriority.User);
     }
 
     private void OnWindowDelete(object sender, DeleteEventArgs e)

@@ -16,20 +16,21 @@
       <object class="GtkBox">
         <property name="visible">True</property>
         <property name="can-focus">False</property>
-        <property name="margin-left">4</property>
-        <property name="margin-right">4</property>
-        <property name="margin-top">4</property>
-        <property name="margin-bottom">4</property>
         <property name="orientation">vertical</property>
         <child>
-          <object class="GtkTextView" id="textInput">
+          <object class="GtkEntry" id="textInput">
             <property name="visible">True</property>
             <property name="can-focus">True</property>
+            <property name="margin-left">4</property>
+            <property name="margin-right">4</property>
+            <property name="margin-top">4</property>
+            <property name="margin-bottom">4</property>
             <property name="hexpand">True</property>
             <property name="vexpand">True</property>
-            <property name="left-margin">10</property>
-            <property name="right-margin">10</property>
-            <property name="top-margin">10</property>
+            <property name="has-frame">False</property>
+            <style>
+              <class name="textInput"/>
+            </style>
           </object>
           <packing>
             <property name="expand">False</property>
@@ -37,11 +38,17 @@
             <property name="position">0</property>
           </packing>
         </child>
+        <style>
+          <class name="mainBox"/>
+        </style>
       </object>
     </child>
+    <style>
+      <class name="mainWindow"/>
+    </style>
   </object>
   <object class="GtkStatusIcon" id="trayIcon">
-    <property name="file">/home/runsten/src/private/twt-app/clock.png</property>
+    <property name="file">/home/runsten/src/private/twt-app/src/assets/clock.png</property>
     <property name="has-tooltip">True</property>
     <property name="tooltip-text" translatable="yes">Time will tell</property>
     <property name="title" translatable="yes">Time will tell</property>
